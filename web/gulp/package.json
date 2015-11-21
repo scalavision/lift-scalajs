@@ -1,0 +1,9 @@
+{
+  "name": "scalajs-tutorial",
+  "version": "0.0.1",
+  "devDependencies": {
+    "browser-sync": "^2.8.0",
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6"
+  }
+}
