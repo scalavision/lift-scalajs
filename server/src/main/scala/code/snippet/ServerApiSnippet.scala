@@ -38,8 +38,11 @@ class ServerApiSnippet extends Loggable {
       )
       
       // Using Lift DSL from Lift extras module,
-      // we set our window object connected bridge to point to ServerClientBridge:
+      // we create an instance of our ServerClientBridge with JsExtras.CallNew
+      // we set our window object connected bridge to point to the ServerClientBridge:
       // window.actorsBridge = com.obx.web.client.api.ServerToClientBridge
+      // it makes it possible to call window.actorsBridge from server, and then
+      // forward to functions implemented in ServerClientBridge class on the scalajs client
       val serverToClientBridge = SetExp(
         JsVar("window.actorsBridge"), JsExtras.CallNew(clientApiForServer)
       )
@@ -48,22 +51,17 @@ class ServerApiSnippet extends Loggable {
         import net.liftweb.json.Serialization.{write}
         
         val searchText = searchStringJS.extract[String]
-        val result:Seq[String] = database.filter(s => s.contains(searchText))
-        
-//        resultJson = 
-//          result.toList.map(s => {
-//              
-//        })
+        val result:Seq[SearchItem] = 
+          database.filter(s => s.contains(searchText)).map(
+            s => SearchItem("1", s)
+          )
         
         val resultJson: String = 
-          write(JArray(result.toList.map(s => {
-            Extraction.decompose(SearchItem("1", s))
-          })))
-        
-        println(resultJson)
+          write(Extraction.decompose(result))
         
         // Adding setSearchResult to window.actorsBridge, thus we can
         // implement this method in ServerToClientBridge class in web client
+        // and call it from server via window.actorsBridge
         val cmd = s"window.actorsBridge.setSearchResult('${resultJson}');"
         
         clientProxy ! JE.JsRaw(cmd)

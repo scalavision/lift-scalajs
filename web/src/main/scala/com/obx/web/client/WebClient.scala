@@ -10,14 +10,14 @@ import scala.scalajs.js
 object WebClient extends JSApp {
   
   def main(): Unit = {
-    
     // Need a small timeout to assure
-    // all classes has settled
+    // all classes has settled after page load
     dom.window.setTimeout( { () => 
         Api.search("Ban")
       }
       , 1200)
-    
+  
+    println("Did website refresh by itself ???")
   }
   
 }

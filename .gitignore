@@ -6,6 +6,7 @@
 *.js
 *.settings
 *.project
+*.swp
 
 # sbt specific
 .cache
