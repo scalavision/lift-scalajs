@@ -13,4 +13,3 @@ Lift has a supreme SPA support. It is not very well documented, but there are pi
 * https://github.com/joescii/lift-ng
 
 There may as well be other ones. But I have not found anyone trying the powerful combination of scalajs and lift.
-
