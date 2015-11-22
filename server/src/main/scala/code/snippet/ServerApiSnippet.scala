@@ -48,17 +48,13 @@ class ServerApiSnippet extends Loggable {
         import net.liftweb.json.Serialization.{write}
         
         val searchText = searchStringJS.extract[String]
-        val result:Seq[String] = database.filter(s => s.contains(searchText))
-        
-//        resultJson = 
-//          result.toList.map(s => {
-//              
-//        })
+        val result:Seq[SearchItem] = 
+          database
+            .filter(s => s.contains(searchText))
+            .map(s => SearchItem("1", s))
         
         val resultJson: String = 
-          write(JArray(result.toList.map(s => {
-            Extraction.decompose(SearchItem("1", s))
-          })))
+          write(Extraction.decompose(result))
         
         println(resultJson)
         
@@ -70,10 +66,7 @@ class ServerApiSnippet extends Loggable {
         
         serverToClientForwarder.map{
           forwarder => { 
-            println("sending a message via comet ..")
-            println(forwarder)
             forwarder ! "test" 
-            
           }
         }
         

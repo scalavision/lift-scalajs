@@ -11,6 +11,8 @@ object WebClient extends JSApp {
   
   def main(): Unit = {
     
+    println("client starting up...")
+    
     // Need a small timeout to assure
     // all classes has settled
     dom.window.setTimeout( { () => 

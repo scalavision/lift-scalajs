@@ -7,6 +7,7 @@
 *.settings
 *.project
 *.swp
+TimeStamp
 
 # sbt specific
 .cache

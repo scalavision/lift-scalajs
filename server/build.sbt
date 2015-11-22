@@ -33,7 +33,7 @@ libraryDependencies ++= {
     "net.liftweb"       %% "lift-json"               % liftVersion % "compile",
     "net.liftweb"       %% "lift-mongodb-record"     % liftVersion,
     "net.liftmodules"   %% "lift-jquery-module_3.0"  % "2.9",
-    "net.liftmodules"   %% "lift-extras"             % "0.5-SNAPSHOT",
+    "net.liftmodules"   %% "extras_3-0"              % "0.5-SNAPSHOT",
     "org.eclipse.jetty" % "jetty-server"             % jetty,
     "org.eclipse.jetty" % "jetty-webapp"             % jetty        % "container,test", // For Jetty Config
     "org.eclipse.jetty" % "jetty-plus"               % jetty        % "container,test", // For Jetty Config
